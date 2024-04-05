@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # make sure the curl utility is installed
 sudo apt install curl -y
 
