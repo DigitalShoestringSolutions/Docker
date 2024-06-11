@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# make sure the curl utility is installed
+# Install Docker on a Raspberry Pi
+
+
+# Check for available updates
+sudo apt update
+
+# Make sure the curl utility is installed
 sudo apt install curl -y
 
-# use curl to install docker
+# Use curl to install docker
 curl -sSL https://get.docker.com | sh
 # If already installed displays a warning message, 
 # but no issues have been observed
@@ -14,7 +20,7 @@ sudo usermod -a -G docker $USER
 # Starts Docker running in the background
 sudo systemctl start docker
 
-# sudo systemctl enable docker
+# Sets Docker to run in the background whenever the board starts up
 sudo systemctl enable docker
 
 # docker compose should be included, but in case it is not:
