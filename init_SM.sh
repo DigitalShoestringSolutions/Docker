@@ -22,7 +22,7 @@ echo \
 sudo apt-get update
 
 # Install the latest version of some Docker packages
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 
 # Lets the user account run Docker without elevated privileges
