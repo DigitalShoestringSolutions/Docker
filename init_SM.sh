@@ -6,13 +6,24 @@
 # Check for available updates
 sudo apt update
 
-# Make sure the curl utility is installed
-sudo apt install curl -y
+# Make sure the certificate handler and curl utilities are installed
+sudo apt install ca-certificates curl -y
 
-# Use curl to install docker
-curl -sSL https://get.docker.com | sh
-# If already installed displays a warning message, 
-# but no issues have been observed
+# Modern install method: add Docker's official GPG key:
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# Install the latest version of some Docker packages
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 
 # Lets the user account run Docker without elevated privileges
 sudo usermod -a -G docker $USER
@@ -22,9 +33,6 @@ sudo systemctl start docker
 
 # Sets Docker to run in the background whenever the board starts up
 sudo systemctl enable docker
-
-# docker compose should be included, but in case it is not:
-sudo apt install docker-compose-plugin
 
 # Note: the user now needs to log out and in again (or reboot) 
 # for the permission changes above to take effect
