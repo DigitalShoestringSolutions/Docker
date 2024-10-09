@@ -7,7 +7,7 @@
 sudo apt-get -qq update
 
 # Make sure the certificate handler and curl utilities are installed
-sudo apt-get -q install ca-certificates curl -y
+sudo apt-get -qq install ca-certificates curl -y
 
 # Modern install method: add Docker's official GPG key:
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -22,7 +22,7 @@ echo \
 sudo apt-get -qq update
 
 # Install the latest version of some Docker packages
-sudo apt-get -q install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+sudo apt-get -qq install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 
 # Lets the user account run Docker without elevated privileges
@@ -34,5 +34,11 @@ sudo systemctl start docker
 # Sets Docker to run in the background whenever the board starts up
 sudo systemctl enable docker
 
-# Note: the user now needs to log out and in again (or reboot) 
+# Test the install by printing the version numbers
+echo -n "        Installed "
+docker -v
+echo -n "        Installed "
+docker compose version
+
+# Note: the user now needs to log out and in again (or reboot)
 # for the permission changes above to take effect
