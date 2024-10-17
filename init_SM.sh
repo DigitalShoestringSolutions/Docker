@@ -22,10 +22,12 @@ echo \
 sudo apt-get -qq update
 
 # Install the latest version of some Docker packages
+echo -n "        Installing docker packages..."
 sudo apt-get -qq install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 
 # Lets the user account run Docker without elevated privileges
+echo -n "        Adding current user to docker user group..."
 sudo usermod -a -G docker $USER
 
 # Starts Docker running in the background
@@ -42,3 +44,4 @@ docker compose version
 
 # Note: the user now needs to log out and in again (or reboot)
 # for the permission changes above to take effect
+echo -n "        User permissions will be applied after the next reboot"
