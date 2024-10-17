@@ -31,6 +31,7 @@ echo "        Adding current user to docker user group..."
 sudo usermod -a -G docker $USER
 
 # Starts Docker running in the background
+echo "        Starting docker now and on every boot..."
 sudo systemctl start docker
 
 # Sets Docker to run in the background whenever the board starts up
